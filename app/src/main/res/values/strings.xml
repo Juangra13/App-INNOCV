@@ -1,15 +1,31 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name" translatable="false">My Application</string>
+    <string name="action_settings" translatable="false">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">User List</string>
-    <string name="second_fragment_label">High user</string>
-    <string name="next">Next</string>
-    <string name="previous">Añadir Usuario</string>
+    <string name="first_fragment_label">Listado Usuarios</string>
+    <string name="second_fragment_label">Alta Usuarios</string>
+    <string name="next">Siguiente</string>
+    <string name="add_user_text">Añadir Usuario</string>
 
     <!-- Messages app -->
+    <string name="message_deleted_user">Usuario eliminado</string>
+    <string name="message_error_network_deleting_user">No se ha podido eliminar el usuario, intentelo mas tarde.</string>
+    <string name="message_error_get_users">Error al obtener los usuarios</string>
+    <string name="message_error_network">No se ha podido realizar la petición</string>
+    <string name="message_error_actualize_user">No se ha podido actualizar el usuario</string>
+    <string name="message_user_created_ok">Se ha creado el usuario con éxito.</string>
+    <string name="message_error_user_created_ko">Ups! No se ha podido crear el usuario.</string>
 
     <!-- Strings app -->
+    <string name="edit_data_dialog_name_user_mesage">Edita el nombre del usuario:</string>
+    <string name="high_user_text">Alta usuario</string>
+    <string name="global_ok" translatable="false">OK</string>
+    <string name="name_text_two_point">Nombre:</string>
+    <string name="date_birthday_two_point">Fecha nacimiento:</string>
+    <string name="hint_filter_users">Filtro usuarios por nombre</string>
+    <string name="high_the_user_text">Alta de usuario</string>
+    <string name="name_text">Nombre</string>
+    <string name="birthday_text">Fecha nacimiento</string>
 
 
 </resources>

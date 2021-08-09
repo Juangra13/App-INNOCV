@@ -1,6 +1,7 @@
 package com.example.myapplication.presenter
 
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
 import com.example.myapplication.business.model.User
 import com.example.myapplication.interactor.UserIInteractor
 import com.example.myapplication.interactor.UserInteractor
@@ -9,7 +10,8 @@ import com.example.myapplication.view.fragment.UserIView
 class UserListPresenter(view: UserIView, context: AppCompatActivity): UserListIPresenter {
 
     private var viewRef = view
-    private val interactor: UserIInteractor = UserInteractor(this, context)
+    private val context = context
+    private val interactor: UserIInteractor = UserInteractor(this, this.context)
 
     override fun getView(): UserIView? {
         return viewRef
@@ -40,7 +42,7 @@ class UserListPresenter(view: UserIView, context: AppCompatActivity): UserListIP
         if(isSucessful) {
             viewRef.removeUser(position)
         } else {
-            launchSnackbarMessage("Noo se ha podido eliminar el usuario, intentelo mas tarde.")
+            launchSnackbarMessage(context.getString(R.string.message_error_network_deleting_user))
         }
     }
 

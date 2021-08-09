@@ -76,25 +76,25 @@ class HighUserFragment : Fragment(), HighUserIView, DatePickerDialog.OnDateSetLi
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        val date = dayOfMonth.toString() + "/" + (monthOfYear + 1).toString() + "/" + year
+        val date = "$dayOfMonth/${(monthOfYear + 1)}/$year"
         binding.etBirthday.setText(date)
     }
 
     override fun showDialogOK() {
-        showDialogWidthMessage("Se ha creado el usuario con éxito.", true)
+        showDialogWidthMessage(message = getString(R.string.message_user_created_ok), isOK = true)
     }
 
     override fun showDialogKO() {
-        showDialogWidthMessage(message = "Ups!.\nNo se ha podido crear el usuario.", isOK = false)
+        showDialogWidthMessage(message = getString(R.string.message_error_user_created_ko), isOK = false)
     }
 
     private fun showDialogWidthMessage(message: String, isOK: Boolean) {
         AlertDialog.Builder(requireContext())
             .setCancelable(false)
-            .setTitle("Alta usuario")
+            .setTitle(getString(R.string.high_user_text))
             .setMessage(message)
             .setPositiveButton(
-                "OK"
+                getString(R.string.global_ok)
             ) { dialog, _ -> if (isOK) findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment) else dialog.dismiss() }
             .show()
     }

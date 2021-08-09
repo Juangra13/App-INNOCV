@@ -1,6 +1,7 @@
 package com.example.myapplication.interactor
 
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
 import com.example.myapplication.business.api.ApiService
 import com.example.myapplication.business.api.RetrofitBuilder
 import com.example.myapplication.business.model.User
@@ -28,7 +29,7 @@ class UserInteractor(userPresenter: UserListPresenter, context: AppCompatActivit
                 if(call.isSuccessful){
                     userList?.let { presenter.loadUsers(it, isRefresh) }
                 }else{
-                    presenter.launchSnackbarMessage("Error al obtener los usuarios")
+                    presenter.launchSnackbarMessage(context.getString(R.string.message_error_get_users))
                 }
             }
         }
@@ -52,7 +53,7 @@ class UserInteractor(userPresenter: UserListPresenter, context: AppCompatActivit
                 if(call.isSuccessful){
                     // presenter.refreshListWidthUser(user)
                 }else{
-                    presenter.launchSnackbarMessage("No se ha podido realizar la petición")
+                    presenter.launchSnackbarMessage(context.getString(R.string.message_error_network))
                 }
             }
         }
@@ -67,7 +68,7 @@ class UserInteractor(userPresenter: UserListPresenter, context: AppCompatActivit
                 if(call.isSuccessful){
                     presenter.actualiceUser(user, position)
                 }else{
-                    presenter.launchSnackbarMessage("No se ha podido actualizar el usuario ${user.name}")
+                    presenter.launchSnackbarMessage("${context.getString(R.string.message_error_actualize_user)} ${user.name}")
                 }
             }
         }

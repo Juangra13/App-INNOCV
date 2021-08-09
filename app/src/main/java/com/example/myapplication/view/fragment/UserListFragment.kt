@@ -96,7 +96,7 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
 
     private fun showEditUserDialog(user: User, position: Int) {
         user.name?.let {
-            EditDataDialog.displayMessage(requireContext(), "Edita el nombre del usuario:", it,
+            EditDataDialog.displayMessage(requireContext(), getString(R.string.edit_data_dialog_name_user_mesage), it,
                 object : EditDataDialog.EditDataListener {
                     override fun onClosed(name: String?) {
                         if(!name.isNullOrEmpty() && !name.equals(user.name, true)) {
@@ -153,7 +153,7 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
     }
 
     override fun removeUser(position: Int) {
-        showMessageSnackbar("Usuario eliminado")
+        showMessageSnackbar(getString(R.string.message_deleted_user))
         userList.removeAt(position)
         binding.rvUsers.adapter?.notifyItemRemoved(position)
     }
