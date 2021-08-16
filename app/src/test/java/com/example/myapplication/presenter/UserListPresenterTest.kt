@@ -31,12 +31,8 @@ class UserListPresenterTest {
         setPrivateField("interactor", interactor)
     }
 
-    private fun setPrivateField(name: String, item: Any, isBasePresenterField: Boolean = false) {
-        val field = if (isBasePresenterField) {
-            UserListPresenter::class.java.getDeclaredField(name)
-        } else {
-            presenter.javaClass.getDeclaredField(name)
-        }
+    private fun setPrivateField(name: String, item: Any) {
+        val field = presenter.javaClass.getDeclaredField(name)
         field.isAccessible = true
         field.set(presenter, item)
     }
