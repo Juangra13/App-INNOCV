@@ -73,6 +73,7 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
             userList.addAll(listSave)
             binding.rvUsers.adapter?.notifyDataSetChanged()
             listSave.clear()
+            showOrHideEmptyText()
             false
         }
     }
@@ -88,6 +89,7 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
                 showEditUserDialog(user, position)
             }
         })
+        showOrHideEmptyText()
         binding.rvUsers.layoutManager = LinearLayoutManager(this.activity)
         binding.rvUsers.adapter = adapter
         if (binding.swipeLayout.isVisible) hideSwipeLayout()
@@ -106,6 +108,17 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
                         }
                     }
                 })
+        }
+    }
+
+    private fun showOrHideEmptyText() {
+        if (userList.isEmpty()) {
+            binding.rvUsers.visibility = View.GONE
+            binding.emptyView?.visibility = View.VISIBLE
+        }
+        else {
+            binding.rvUsers.visibility = View.VISIBLE
+            binding.emptyView?.visibility = View.GONE
         }
     }
 
@@ -139,6 +152,7 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
         val filterList = listSave.filter { it.name!!.contains(name, true) } as MutableList<User>
         userList.addAll(filterList)
         binding.rvUsers.adapter?.notifyDataSetChanged()
+        showOrHideEmptyText()
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
@@ -156,6 +170,7 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
         showMessageSnackbar(getString(R.string.message_deleted_user))
         userList.removeAt(position)
         binding.rvUsers.adapter?.notifyItemRemoved(position)
+        showOrHideEmptyText()
     }
 
     override fun actualizeAllList(userList: ArrayList<User>) {
@@ -163,12 +178,14 @@ class UserListFragment : Fragment(), UserIView, SearchView.OnQueryTextListener{
         this.userList.clear()
         this.userList.addAll(userList)
         binding.rvUsers.adapter?.notifyDataSetChanged()
+        showOrHideEmptyText()
         hideLoading()
     }
 
     override fun actualizeUserList(user: User, position: Int) {
         userList[position] = user
         binding.rvUsers.adapter?.notifyItemChanged(position)
+        showOrHideEmptyText()
         hideLoading()
     }
 
